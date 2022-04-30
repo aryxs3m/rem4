@@ -44,7 +44,7 @@ public class BaseFeature extends ListenerAdapter implements FeatureInterface {
         String originalMessage = event.getMessage().getContentDisplay();
         String[] params = originalMessage.split(" ");
 
-        if (params.length != required + 1) {
+        if (params.length < required + 1) {
             throw new RequiredParameterException();
         }
 
