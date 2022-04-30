@@ -13,6 +13,8 @@ public class SystemConfig extends BaseConfig {
     private String botName;
     private String botIcon;
 
+    private String databaseJDBC;
+
     private List<String> enabledFeatures;
 
     private List<String> adminUsers;
@@ -37,6 +39,14 @@ public class SystemConfig extends BaseConfig {
 
     public String getBotIcon() {
         return botIcon;
+    }
+
+    public String getDatabaseJDBC() {
+        return databaseJDBC;
+    }
+
+    public void setDatabaseJDBC(String databaseJDBC) {
+        this.databaseJDBC = databaseJDBC;
     }
 
     public void setBotIcon(String botIcon) {

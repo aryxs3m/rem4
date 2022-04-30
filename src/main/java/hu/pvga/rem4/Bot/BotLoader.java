@@ -40,7 +40,6 @@ public class BotLoader {
         loadFeatures(builder);
 
         BotLoader.JDA = builder.build();
-        //initSlashCommands();
 
         return BotLoader.JDA;
     }
@@ -71,10 +70,10 @@ public class BotLoader {
         }
     }
 
-    private void initSlashCommands()
+    public void initFeatures()
     {
         for (FeatureInterface feature: features) {
-            feature.initSlashCommands();
+            feature.onJDAInit();
         }
     }
 }

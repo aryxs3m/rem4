@@ -28,6 +28,12 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
     implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.9.3'
+
+    // https://mvnrepository.com/artifact/com.j256.ormlite/ormlite-jdbc
+    implementation group: 'com.j256.ormlite', name: 'ormlite-jdbc', version: '6.1'
+
+    // https://mvnrepository.com/artifact/com.h2database/h2
+    implementation group: 'com.h2database', name: 'h2', version: '2.1.212'
 }
 
 test {
