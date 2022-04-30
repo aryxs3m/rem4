@@ -31,6 +31,13 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.net.URLEncoder;
 
+/**
+ * Synonym Feature
+ *
+ * This feature uses poet.hu's (hungarian poem/poetry website) API to find synonyms to words. Hungarian only.
+ *
+ * Configuration: poet.hu API username/password
+ */
 public class Synonym extends BaseFeature {
     private final SynonymConfig synonymConfig;
 
@@ -107,6 +114,12 @@ public class Synonym extends BaseFeature {
         }
     }
 
+    /**
+     * Legacy Rem v3 code. Duplicated too.
+     * @todo Change later.
+     * @param e
+     * @return
+     */
     public static String getCharacterDataFromElement(Element e) {
         Node child = e.getFirstChild();
         if (child instanceof CharacterData) {

@@ -24,6 +24,14 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * Events Feature
+ *
+ * You can define (recurring) events. These events will be announced daily at a given time and will appear in the bots
+ * presence/activity. Events are stored in database, management also done by using administrator commands.
+ *
+ * Configuration: announcement channel id, announcement hour
+ */
 public class Events extends BaseFeature {
     private final EventsConfig eventsConfig;
     ArrayList<Event> events = new ArrayList<>();
@@ -181,6 +189,10 @@ public class Events extends BaseFeature {
         }
     }
 
+    /**
+     * Fetches all events from the database and puts them to a list.
+     * @throws SQLException
+     */
     private void loadEventsFromDatabase() throws SQLException {
         Dao<Event, String> eventDao = DaoManager.createDao(Main.database.connectionSource, Event.class);
 
@@ -190,6 +202,10 @@ public class Events extends BaseFeature {
         }
     }
 
+    /**
+     * Checks if there are any event today and sets them as activity.
+     * @param announce if true, the event will be announced to the announce channel
+     */
     private void updateActiveEvent(boolean announce)
     {
         LocalDateTime localDateTime = java.time.LocalDateTime.now();
@@ -222,6 +238,9 @@ public class Events extends BaseFeature {
         }
     }
 
+    /**
+     * TimerTask to update periodically.
+     */
     public class UpdateEventTask extends TimerTask {
         @Override
         public void run() {

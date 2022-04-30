@@ -20,6 +20,13 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.Random;
 
+/**
+ * Weather Command
+ *
+ * Returns the weather from OpenWeatherMap.
+ *
+ * Configuration: OpenWeatherMap API key, units, lang
+ */
 public class Weather extends BaseFeature {
     private final WeatherConfig weatherConfig;
 

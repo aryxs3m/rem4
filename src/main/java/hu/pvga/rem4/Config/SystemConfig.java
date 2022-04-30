@@ -8,6 +8,11 @@ package hu.pvga.rem4.Config;
 
 import java.util.List;
 
+/**
+ * System Configuration
+ *
+ * This config file is loaded at start to a static variable and can be accessible from anywhere.
+ */
 public class SystemConfig extends BaseConfig {
     private String discordToken;
     private String botName;

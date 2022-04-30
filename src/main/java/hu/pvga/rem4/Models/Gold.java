@@ -12,6 +12,11 @@ import com.j256.ormlite.table.DatabaseTable;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+/**
+ * Gold Feature
+ *
+ * Gold model - holds one "gold" message
+ */
 @DatabaseTable(tableName = "golds")
 public class Gold {
 

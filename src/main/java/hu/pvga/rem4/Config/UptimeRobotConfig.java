@@ -6,6 +6,9 @@
 
 package hu.pvga.rem4.Config;
 
+/**
+ * UptimeRobot Feature configuration
+ */
 public class UptimeRobotConfig extends BaseConfig {
     private String apiKey;
 

@@ -12,6 +12,14 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * ConfigManager
+ *
+ * Small utility that helps in loading configuration files.
+ *
+ * Every configuration file stored in the <bold>config</bold> directory. Filenames are matching the corresponding class
+ * names.
+ */
 public class ConfigManager {
     private static final String CONFIG_DIRECTORY = "config";
 

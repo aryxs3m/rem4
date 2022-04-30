@@ -6,6 +6,9 @@
 
 package hu.pvga.rem4.Config;
 
+/**
+ * Events Feature configuration
+ */
 public class EventsConfig extends BaseConfig {
     private String announceChannelId;
     private int announceAtHour;

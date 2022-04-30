@@ -15,6 +15,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+/**
+ * Nmap Feature
+ *
+ * Simple nmap search, a basic TCP portscan.
+ */
 public class Nmap extends BaseFeature {
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
@@ -34,6 +39,9 @@ public class Nmap extends BaseFeature {
         }
     }
 
+    /**
+     * We want to run this on a separate thread to avoid blocking.
+     */
     public static class NmapThread extends Thread {
         String address;
         MessageReceivedEvent event;

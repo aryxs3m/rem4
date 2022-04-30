@@ -10,8 +10,6 @@ import hu.pvga.rem4.Bot.Exceptions.RequiredParameterException;
 import hu.pvga.rem4.Bot.Extends.BotEmbedBuilder;
 import hu.pvga.rem4.Config.ConfigManager;
 import hu.pvga.rem4.Config.CurrencyConfig;
-import hu.pvga.rem4.Config.UptimeRobotConfig;
-import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
@@ -20,6 +18,15 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Currency Converter Feature
+ *
+ * This one uses the currencyapi.com API. It has a short and a long command:
+ * <blockquote>currency 1 USD</blockquote> will convert 1 USD to the configured currency,
+ * <blockquote>currency 1 USD in EUR</blockquote> will convert 1 USD to EUR.
+ *
+ * Configuration: API key, base currency
+ */
 public class Currency extends BaseFeature {
     private final CurrencyConfig currencyConfig;
 
@@ -43,7 +50,7 @@ public class Currency extends BaseFeature {
                     argCurrency = args[3];
                 }
 
-                response = convert(argBaseCurrency, argCurrency);
+                response = getExchangeRate(argBaseCurrency, argCurrency);
 
                 if (response.code() == 429) {
                     event.getChannel().sendMessage("CurrencyAPI rate limit exceeded.").queue();
@@ -85,7 +92,14 @@ public class Currency extends BaseFeature {
         }
     }
 
-    private Response convert(String baseCurrency, String currency) throws IOException {
+    /**
+     * Returns exchange rate between two currencies.
+     * @param baseCurrency
+     * @param currency
+     * @return
+     * @throws IOException
+     */
+    private Response getExchangeRate(String baseCurrency, String currency) throws IOException {
         OkHttpClient client = new OkHttpClient();
 
         HttpUrl.Builder urlBuilder =

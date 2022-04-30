@@ -17,6 +17,13 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+/**
+ * UptimeRobot Feature
+ *
+ * Shows your UptimeRobot monitors all time availability.
+ *
+ * Configuration: UptimeRobot api key
+ */
 public class UptimeRobot extends BaseFeature {
     private final UptimeRobotConfig uptimeRobotConfig;
 

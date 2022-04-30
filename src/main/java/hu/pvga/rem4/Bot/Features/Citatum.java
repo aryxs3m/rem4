@@ -30,6 +30,14 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.StringReader;
 
+/**
+ * Citatum Feature
+ *
+ * Citatum (https://citatum.hu) is a hungarian quote portal. This feature contains one command that can get a random
+ * quote from it.
+ *
+ * Configuration: citatum.hu API username and password and quote category name
+ */
 public class Citatum extends BaseFeature {
     private final CitatumConfig citatumConfig;
 
@@ -98,6 +106,12 @@ public class Citatum extends BaseFeature {
         }
     }
 
+    /**
+     * Legacy Rem v3 code. Duplicated too.
+     * @todo Change later.
+     * @param e
+     * @return
+     */
     public static String getCharacterDataFromElement(Element e) {
         Node child = e.getFirstChild();
         if (child instanceof CharacterData) {

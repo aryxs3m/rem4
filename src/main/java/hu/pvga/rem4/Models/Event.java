@@ -9,6 +9,11 @@ package hu.pvga.rem4.Models;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+/**
+ * Events Feature
+ *
+ * Event Model - holds one event
+ */
 @DatabaseTable(tableName = "events")
 public class Event {
 

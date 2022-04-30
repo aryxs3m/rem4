@@ -6,6 +6,9 @@
 
 package hu.pvga.rem4.Config;
 
+/**
+ * Weather Feature configuration
+ */
 public class WeatherConfig extends BaseConfig {
     private String openWeatherAppId;
     private String units;

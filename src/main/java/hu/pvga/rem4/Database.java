@@ -11,6 +11,9 @@ import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
 
+/**
+ * Database helper class
+ */
 public class Database {
     public ConnectionSource connectionSource;
 

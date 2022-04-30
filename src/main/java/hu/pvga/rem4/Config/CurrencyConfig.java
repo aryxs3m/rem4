@@ -6,6 +6,9 @@
 
 package hu.pvga.rem4.Config;
 
+/**
+ * Currency Feature configuration
+ */
 public class CurrencyConfig extends BaseConfig {
     private String apiKey;
     private String defaultCurrency;

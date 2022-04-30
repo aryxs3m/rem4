@@ -6,6 +6,9 @@
 
 package hu.pvga.rem4.Config;
 
+/**
+ * Citatum Feature configuration
+ */
 public class CitatumConfig extends BaseConfig {
     private String username;
     private String password;

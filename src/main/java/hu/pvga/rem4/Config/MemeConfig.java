@@ -6,6 +6,9 @@
 
 package hu.pvga.rem4.Config;
 
+/**
+ * Meme Feature configuration
+ */
 public class MemeConfig extends BaseConfig {
     private String username;
     private String password;

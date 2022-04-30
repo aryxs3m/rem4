@@ -15,6 +15,11 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.util.Random;
 
+/**
+ * Dice
+ *
+ * Throws with a basic 6 sided dice and returns the result.
+ */
 public class Dice extends BaseFeature {
 
     public Dice() {

@@ -6,6 +6,9 @@
 
 package hu.pvga.rem4.Config;
 
+/**
+ * Gold Feature configuration
+ */
 public class GoldConfig extends BaseConfig {
     private String emojiOrEmote;
     private String emoji;

@@ -14,6 +14,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
+/**
+ * Stopwatch Feature
+ *
+ * Old Rem command. Calling the command once starts the stopwatch, calling it again stops it and shows the elapsed time.
+ */
 public class Stopwatch extends BaseFeature {
     private boolean isStarted = false;
     private User startedBy;

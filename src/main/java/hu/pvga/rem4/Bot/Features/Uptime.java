@@ -14,6 +14,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
+/**
+ * Uptime Feature
+ *
+ * Shows the server uptime.
+ */
 public class Uptime extends BaseFeature {
 
     public Uptime() {

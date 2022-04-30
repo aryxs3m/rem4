@@ -18,6 +18,11 @@ import javax.security.auth.login.LoginException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * BotLoader
+ *
+ * This class initializes JDA and the enabled Features.
+ */
 public class BotLoader {
     private static JDA JDA;
     private final Logger logger = LoggerFactory.getLogger(BotLoader.class);

@@ -18,6 +18,14 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.Objects;
 
+/**
+ * Meme Feature
+ *
+ * This generates meme images with imgflip when matching pattern found in the incoming message. Currently it supports
+ * "always has been" if somebody replies "always has been" to a message.
+ *
+ * Configuration: imgflip username and password, timeout seconds (to avoid spamming)
+ */
 public class Meme extends BaseFeature {
     private final MemeConfig memeConfig;
     private long lastSent = 0;
@@ -62,6 +70,12 @@ public class Meme extends BaseFeature {
         lastSent = System.nanoTime();
     }
 
+    /**
+     * Makes always has been meme by MessageReceivedEvent.
+     * @param event
+     * @return
+     * @throws IOException
+     */
     public Response makeAlwaysHasBeen(MessageReceivedEvent event) throws IOException {
         return makeMeme(
                 "252600902",
@@ -70,6 +84,14 @@ public class Meme extends BaseFeature {
         );
     }
 
+    /**
+     * Makes a meme by an imgflip template id and to texts.
+     * @param templateId imgflip meme template id
+     * @param text0 text 1 (top or left)
+     * @param text1 text 2 (bottom or right)
+     * @return
+     * @throws IOException
+     */
     private Response makeMeme(String templateId, String text0, String text1) throws IOException {
         OkHttpClient client = new OkHttpClient();
 

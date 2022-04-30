@@ -6,6 +6,9 @@
 
 package hu.pvga.rem4.Config;
 
+/**
+ * Synonym Feature configuration
+ */
 public class SynonymConfig extends BaseConfig {
     private String username;
     private String password;
