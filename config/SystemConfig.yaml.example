@@ -1,0 +1,16 @@
+#
+# Rem Discord Bot v4
+# System Config
+
+discord_token: 'dc-bot-token-here'
+
+# Admin Users
+admin_users:
+  - 00000000000000000000000 #Your Discord user ID here
+
+# Web API Settings
+api_enabled: false
+api_port: 8080
+api_basic_auth: false
+api_user: 'rem'
+api_password: 'rem'
