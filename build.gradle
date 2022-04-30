@@ -25,6 +25,9 @@ dependencies {
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
     implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32'
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.32'
+
+    // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.9.3'
 }
 
 test {
