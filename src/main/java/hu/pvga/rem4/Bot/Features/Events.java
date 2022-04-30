@@ -174,7 +174,7 @@ public class Events extends BaseFeature {
         try {
             TableUtils.createTableIfNotExists(Main.database.connectionSource, Event.class);
             loadEventsFromDatabase();
-            updateActiveEvent(true);
+            updateActiveEvent(false);
             new Timer().scheduleAtFixedRate(new UpdateEventTask(), 0, 1000 * 60 * 60);
         } catch (SQLException e) {
             logger.error("Error while initializing Events feature", e);
