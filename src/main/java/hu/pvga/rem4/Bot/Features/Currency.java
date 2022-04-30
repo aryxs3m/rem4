@@ -47,11 +47,13 @@ public class Currency extends BaseFeature {
 
                 if (response.code() == 429) {
                     event.getChannel().sendMessage("CurrencyAPI rate limit exceeded.").queue();
+                    logger.warn("CurrencyAPI rate limit exceeded.");
                     return;
                 }
 
                 if (response.code() != 200) {
                     event.getChannel().sendMessage("CurrencyAPI responded with " + response.code()).queue();
+                    logger.warn("CurrencyAPI responded with " + response.code());
                     return;
                 }
 
@@ -76,6 +78,7 @@ public class Currency extends BaseFeature {
                 ).queue();
             } catch (IOException e) {
                 event.getChannel().sendMessage("Cannot reach CurrencyAPI.").queue();
+                logger.error("Cannot reach CurrencyAPI", e);
             } catch (RequiredParameterException e) {
                 event.getChannel().sendMessage("Missing parameters. Examples: `1 EUR` or `1 EUR in USD`.").queue();
             }

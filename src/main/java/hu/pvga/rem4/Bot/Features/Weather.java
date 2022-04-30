@@ -88,6 +88,7 @@ public class Weather extends BaseFeature {
                 event.getChannel().sendMessage("Required parameter: city or location").queue();
             } catch (IOException e) {
                 event.getChannel().sendMessage("Cannot reach OpenWeatherMap API.").queue();
+                logger.error("Cannot reach OpenWeatherMap API.");
             }
         }
     }

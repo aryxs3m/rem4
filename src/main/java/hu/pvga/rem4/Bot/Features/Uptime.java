@@ -33,6 +33,7 @@ public class Uptime extends BaseFeature {
                 ).queue();
             } catch (IOException e) {
                 event.getChannel().sendMessage("Cannot check uptime right now.").queue();
+                logger.error("Uptime check error.", e);
             }
         }
     }

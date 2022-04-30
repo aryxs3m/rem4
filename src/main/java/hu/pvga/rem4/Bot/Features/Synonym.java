@@ -99,8 +99,10 @@ public class Synonym extends BaseFeature {
                 event.getChannel().sendMessage("Required parameter: word").queue();
             } catch (IOException e) {
                 event.getChannel().sendMessage("Cannot reach poet.hu API.").queue();
+                logger.error("Cannot reach poet.hu API");
             } catch (ParserConfigurationException | SAXException e) {
                 event.getChannel().sendMessage("Failed to parse poet.hu API response.").queue();
+                logger.error("Cannot parse poet.hu API response");
             }
         }
     }

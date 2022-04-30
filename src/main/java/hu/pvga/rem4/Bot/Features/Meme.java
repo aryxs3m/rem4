@@ -29,6 +29,7 @@ public class Meme extends BaseFeature {
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         if ((System.nanoTime() - lastSent) / 1000000000 <= memeConfig.getTimeoutSeconds()) {
+            logger.debug("Meme timeout.");
             return;
         }
 
@@ -55,7 +56,7 @@ public class Meme extends BaseFeature {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Unknown error.", e);
         }
 
         lastSent = System.nanoTime();

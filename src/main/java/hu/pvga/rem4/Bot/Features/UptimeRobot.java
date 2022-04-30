@@ -46,11 +46,13 @@ public class UptimeRobot extends BaseFeature {
 
                 if (response.code() == 429) {
                     event.getChannel().sendMessage("UptimeRobot API rate limit exceeded.").queue();
+                    logger.warn("UptimeRobot API rate limit exceeded.");
                     return;
                 }
 
                 if (response.code() != 200) {
                     event.getChannel().sendMessage("UptimeRobot API responded with " + response.code()).queue();
+                    logger.warn("UptimeRobot API responded with " + response.code());
                     return;
                 }
 
@@ -86,6 +88,7 @@ public class UptimeRobot extends BaseFeature {
                 ).queue();
             } catch (IOException e) {
                 event.getChannel().sendMessage("Cannot reach UptimeRobot API.").queue();
+                logger.error("Cannot reach UptimeRobot API.", e);
             }
         }
     }

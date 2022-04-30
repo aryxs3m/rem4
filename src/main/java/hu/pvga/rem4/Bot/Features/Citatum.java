@@ -90,8 +90,10 @@ public class Citatum extends BaseFeature {
                 ).queue();
             } catch (IOException | ParserConfigurationException e) {
                 event.getChannel().sendMessage("Cannot reach citatum.hu API.").queue();
+                logger.error("Cannot reach citatum.hu API", e);
             } catch (SAXException e) {
                 event.getChannel().sendMessage("Error while parsing citatum.hu API response.").queue();
+                logger.error("Error while parsing citatum.hu API response", e);
             }
         }
     }

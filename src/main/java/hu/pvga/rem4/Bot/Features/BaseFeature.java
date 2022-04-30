@@ -12,6 +12,8 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -20,6 +22,7 @@ import java.util.Map;
 public class BaseFeature extends ListenerAdapter implements FeatureInterface {
     private final String commandPrefix = "?";
     private final HashMap<String, String> slashCommands = new HashMap<>();
+    protected Logger logger =  LoggerFactory.getLogger(this.getClass());
 
     @Override
     public void initSlashCommands() {

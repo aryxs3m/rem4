@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BotLoader {
-    public static Bot bot;
-
     private static JDA JDA;
     private final Logger logger = LoggerFactory.getLogger(BotLoader.class);
     private final List<FeatureInterface> features = new ArrayList<>();
@@ -39,9 +37,6 @@ public class BotLoader {
                 Activity.playing("Rem v4")
         );
 
-        BotLoader.bot = new Bot();
-
-        builder.addEventListeners(BotLoader.bot);
         loadFeatures(builder);
 
         BotLoader.JDA = builder.build();
