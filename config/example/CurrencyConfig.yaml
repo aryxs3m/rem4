@@ -1,0 +1,6 @@
+#
+# Rem Discord Bot v4
+# Currency API Config
+
+apiKey: 'currencyapi.com-apikey'
+defaultCurrency: 'HUF'

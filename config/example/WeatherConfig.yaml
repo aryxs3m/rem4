@@ -1,0 +1,7 @@
+#
+# Rem Discord Bot v4
+# Weather Config
+
+openWeatherAppId: 'openweathermap-api-key'    # api key
+units: 'metric'                               # standard, metric or imperial
+lang: 'hu'                                    # language iso code: https://openweathermap.org/current#multi

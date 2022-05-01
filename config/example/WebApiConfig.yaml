@@ -1,0 +1,6 @@
+#
+# Rem Discord Bot v4
+# Web API Config
+
+apiEnabled: true
+apiPort: 8080

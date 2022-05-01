@@ -1,0 +1,32 @@
+#
+# Rem Discord Bot v4
+# System Config
+
+discordToken: 'discord-bot-token'
+
+# Name and Icon will show up in message embed footer
+botName: 'Rem'
+botIcon: 'https://static.wikia.nocookie.net/rezero/images/0/02/Rem_Anime.png/revision/latest?cb=20210916151323'
+
+# Database JDBC URL
+# Leave it as is for the integrated H2 database
+databaseJDBC: 'jdbc:h2:file:./h2'
+
+# Admin Users, User ID
+adminUsers:
+  - 00000000000000000000
+
+# Enabled features
+enabledFeatures:
+  - Uptime
+  - Dice
+  - Weather
+  - Citatum
+  - Synonym
+  - Stopwatch
+  - Nmap
+  - UptimeRobot
+  - Currency
+  - Meme
+  - Events
+  - Gold

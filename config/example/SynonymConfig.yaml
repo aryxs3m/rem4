@@ -1,0 +1,8 @@
+#
+# Rem Discord Bot v4
+# Synonym Config
+#
+# Description: poet.hu API access
+
+username: 'poet.hu-api-user'
+password: 'poet.hu-api-pass'

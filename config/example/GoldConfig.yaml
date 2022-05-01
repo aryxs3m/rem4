@@ -1,0 +1,7 @@
+#
+# Rem Discord Bot v4
+# Gold Config
+
+emojiOrEmote: 'emote'       # emoji = standard discord emoji, emote = custom, server emote
+emoji: '🏆'                 # if emoji selected, this emoji reaction will trigger the gold function
+emote: 'gold'               # if emote selected, this is the name of your custom server emote

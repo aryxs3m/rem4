@@ -1,0 +1,7 @@
+#
+# Rem Discord Bot v4
+# Meme Config
+
+username: 'imgflip-user'      # imgflip account
+password: 'imgflip-pass'      # imgflip account
+timeoutSeconds: 120           # spam cooldown

@@ -1,0 +1,11 @@
+#
+# Rem Discord Bot v4
+# Citatum Config
+#
+# Description: citatum.hu API access
+
+username: 'citatum-username'
+password: 'citatum-password'
+category: 'optimizmus'
+
+# Choose categories from here: https://www.citatum.hu/kategoria/

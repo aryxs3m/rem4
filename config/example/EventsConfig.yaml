@@ -1,0 +1,6 @@
+#
+# Rem Discord Bot v4
+# Events Config
+
+announceChannelId: '000000000000000000'     # Announcement will go to this channel
+announceAtHour: 8                           # Announcement at 08:00
