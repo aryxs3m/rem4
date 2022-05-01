@@ -9,6 +9,7 @@ package hu.pvga.rem4.WebApi;
 import hu.pvga.rem4.Config.WebApiConfig;
 import hu.pvga.rem4.WebApi.Servlets.Events;
 import hu.pvga.rem4.WebApi.Servlets.Status;
+import hu.pvga.rem4.WebApi.Servlets.WordCounts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.takes.facets.fork.FkRegex;
@@ -34,7 +35,8 @@ public class WebApiServer extends Thread {
             new FtBasic(
                     new TkFork(
                             new FkRegex("/status", new TkWithType(new Status(), "application/json")),
-                            new FkRegex("/events", new TkWithType(new Events(), "application/json"))
+                            new FkRegex("/events", new TkWithType(new Events(), "application/json")),
+                            new FkRegex("/wordcounts", new TkWithType(new WordCounts(), "application/json"))
                     ), this.webApiConfig.getApiPort()
             ).start(Exit.NEVER);
         } catch (IOException e) {
