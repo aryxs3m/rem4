@@ -1,0 +1,9 @@
+#
+# Rem Discord Bot v4
+# BotLibre Config
+
+channelId: '000000000000000000'     # channel to play with AI
+applicationId: '00000000000000'     # BotLibre application id
+instanceId: '0000000'               # BotLibre instance id
+username: 'username'                # BotLibre username
+password: 'password'                # BotLibre password

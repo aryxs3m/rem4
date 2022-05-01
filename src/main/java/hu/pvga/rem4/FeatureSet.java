@@ -55,6 +55,7 @@ public abstract class FeatureSet {
         StringBuilder result = new StringBuilder();
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Linux x86_64) Rem Discord v4");
         conn.setRequestMethod("GET");
 
         try (BufferedReader reader = new BufferedReader(
