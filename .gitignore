@@ -1,2 +1,4 @@
 # Project exclude paths
 /.gradle/
+/h2.mv.db
+/h2.trace.db
