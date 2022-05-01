@@ -30,3 +30,6 @@ enabledFeatures:
   - Meme
   - Events
   - Gold
+  - WordCounter
+  - BotLibre
+  - RoleAdder
