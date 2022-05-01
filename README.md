@@ -8,6 +8,8 @@ in mind.
 
 ## Features
 
+### Discord Commands / Features
+
 | Feature     | Description                                                 |
 |-------------|-------------------------------------------------------------|
 | Citatum     | [citatum.hu](https://citatum.hu) quotes                     |
@@ -22,5 +24,18 @@ in mind.
 | UptimeRobot | shows your UptimeRobot monitors all time availability       |
 | Weather     | weather from OpenWeatherMap                                 |
 | Synonym     | finds synonyms to a word (using [poet.hu](https://poet.hu)) |
+| WordCounter | counts predefined words in messages                         |
+| RoleAdder   | gives newcomers a role                                      |
+| BotLibre    | connect your BotLibre bot to a channel                      |
 
 Every feature can be disabled and most of them are configurable.
+
+### Web API
+
+You can enable a simple JSON API. At the time some basic endpoints are available:
+
+| Endpoint    | Description                                     |
+|-------------|-------------------------------------------------|
+| /status     | Basic status info: version string and RAM usage |
+| /events     | **Events** event list                           |
+| /wordcounts | **WordCounter** all wordcounts                  |
