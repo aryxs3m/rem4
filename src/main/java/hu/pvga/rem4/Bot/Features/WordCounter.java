@@ -11,18 +11,11 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.table.TableUtils;
 import hu.pvga.rem4.Bot.Exceptions.RequiredParameterException;
 import hu.pvga.rem4.Bot.Extends.BotEmbedBuilder;
-import hu.pvga.rem4.Config.ConfigManager;
-import hu.pvga.rem4.Config.GoldConfig;
 import hu.pvga.rem4.Main;
 import hu.pvga.rem4.Models.WordCount;
-import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
-import net.dv8tion.jda.api.events.message.react.MessageReactionRemoveEvent;
-import org.cactoos.map.MapEntry;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;

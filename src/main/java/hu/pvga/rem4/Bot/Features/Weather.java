@@ -12,13 +12,11 @@ import hu.pvga.rem4.Config.ConfigManager;
 import hu.pvga.rem4.Config.WeatherConfig;
 import hu.pvga.rem4.FeatureSet;
 import net.dv8tion.jda.api.entities.MessageEmbed;
-import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.Random;
 
 /**
  * Weather Command

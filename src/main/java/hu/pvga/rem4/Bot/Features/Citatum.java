@@ -6,16 +6,13 @@
 
 package hu.pvga.rem4.Bot.Features;
 
-import hu.pvga.rem4.Bot.Exceptions.RequiredParameterException;
 import hu.pvga.rem4.Bot.Extends.BotEmbedBuilder;
 import hu.pvga.rem4.Config.CitatumConfig;
 import hu.pvga.rem4.Config.ConfigManager;
-import hu.pvga.rem4.Config.WeatherConfig;
 import hu.pvga.rem4.FeatureSet;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONObject;
 import org.w3c.dom.CharacterData;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

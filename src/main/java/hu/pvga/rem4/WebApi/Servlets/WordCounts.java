@@ -9,7 +9,6 @@ package hu.pvga.rem4.WebApi.Servlets;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import hu.pvga.rem4.Main;
-import hu.pvga.rem4.Models.Event;
 import hu.pvga.rem4.Models.WordCount;
 import hu.pvga.rem4.WebApi.ApiResponses.ErrorResponseFactory;
 import org.json.JSONArray;

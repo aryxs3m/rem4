@@ -9,7 +9,6 @@ package hu.pvga.rem4.Models;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 /**

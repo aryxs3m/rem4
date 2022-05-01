@@ -7,12 +7,10 @@
 package hu.pvga.rem4.Bot.Features;
 
 import hu.pvga.rem4.Bot.Extends.BotEmbedBuilder;
-import hu.pvga.rem4.FeatureSet;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.util.Random;
 
 /**

@@ -25,7 +25,7 @@ public abstract class FeatureSet {
      * @return execution stdout
      * @throws IOException
      */
-    public static String getCLI(String commands) throws IOException {
+    public static String getCLI(String commands) throws Exception {
         Runtime rt = Runtime.getRuntime();
         Process proc = rt.exec(commands);
 
@@ -35,14 +35,13 @@ public abstract class FeatureSet {
         BufferedReader stdError = new BufferedReader(new
                 InputStreamReader(proc.getErrorStream()));
 
-        return stdInput.readLine();
+        String errorMessage;
+        if ((errorMessage = stdError.readLine()) != null)
+        {
+            throw new Exception(errorMessage);
+        }
 
-        // TODO: error handling
-        /*
-        System.out.println("Here is the standard error of the command (if any):\n");
-        while ((s = stdError.readLine()) != null) {
-            System.out.println(s);
-        }*/
+        return stdInput.readLine();
     }
 
     /**

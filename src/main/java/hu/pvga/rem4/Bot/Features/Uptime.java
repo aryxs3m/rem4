@@ -36,7 +36,7 @@ public class Uptime extends BaseFeature {
                 event.getChannel().sendMessageEmbeds(
                         embedBuilder.build()
                 ).queue();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 event.getChannel().sendMessage("Cannot check uptime right now.").queue();
                 logger.error("Uptime check error.", e);
             }
@@ -48,7 +48,7 @@ public class Uptime extends BaseFeature {
         if (isSlashCommand(event, "uptime")) {
             try {
                 event.reply(FeatureSet.getCLI("uptime")).setEphemeral(true).queue();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 event.reply("Cannot check uptime right now.").setEphemeral(true).queue();
             }
         }
