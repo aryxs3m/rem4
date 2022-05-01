@@ -9,6 +9,20 @@ repositories {
     mavenCentral()
 }
 
+task createProperties(dependsOn: processResources) {
+    doLast {
+        new File("$buildDir/resources/main/version.properties").withWriter { w ->
+            Properties p = new Properties()
+            p['version'] = project.version.toString()
+            p.store w, null
+        }
+    }
+}
+
+classes {
+    dependsOn createProperties
+}
+
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
@@ -34,6 +48,9 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.h2database/h2
     implementation group: 'com.h2database', name: 'h2', version: '2.1.212'
+
+    // https://mvnrepository.com/artifact/org.takes/takes
+    implementation group: 'org.takes', name: 'takes', version: '1.19'
 }
 
 test {
