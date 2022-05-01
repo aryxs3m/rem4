@@ -1,0 +1,5 @@
+#
+# Rem Discord Bot v4
+# RoleAdder Config
+
+roleName: 'Newcomer'    # new users will have this role automagically applied
