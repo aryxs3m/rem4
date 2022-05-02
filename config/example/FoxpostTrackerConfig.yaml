@@ -1,0 +1,6 @@
+#
+# Rem Discord Bot v4
+# Foxpost Tracker Config
+#
+
+refreshIntervalMinutes: 30      # check tracking status every 30 minutes
