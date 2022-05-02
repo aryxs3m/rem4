@@ -21,6 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -48,7 +49,7 @@ public class Events extends BaseFeature {
 
         if (isCommand(event, "event-list")) {
             if (!isFromAdmin(event)) {
-                event.getChannel().sendMessage("You are not an administrator.").queue();
+                event.getChannel().sendMessage(Main.localization.get("error_not_administrator")).queue();
                 return;
             }
 
@@ -83,7 +84,7 @@ public class Events extends BaseFeature {
                     eventsTable.append(eventItem.getAnnounceMessage());
                     eventsTable.append("\t\n");
                 }
-                event.getChannel().sendMessage("```" + eventsTable.toString() + "```").queue();
+                event.getChannel().sendMessage("```" + eventsTable + "```").queue();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -91,7 +92,7 @@ public class Events extends BaseFeature {
 
         if (isCommand(event, "event-remove")) {
             if (!isFromAdmin(event)) {
-                event.getChannel().sendMessage("You are not an administrator.").queue();
+                event.getChannel().sendMessage(Main.localization.get("error_not_administrator")).queue();
                 return;
             }
 
@@ -101,18 +102,28 @@ public class Events extends BaseFeature {
                 Dao<Event, String> eventDao = DaoManager.createDao(Main.database.connectionSource, Event.class);
                 eventDao.deleteById(args[0]);
 
-                event.getChannel().sendMessage("Event #" + args[0] + " deleted.").queue();
+                event.getChannel().sendMessage(
+                        MessageFormat.format(
+                                Main.localization.get("event_deleted"),
+                                args[0]
+                        )
+                ).queue();
             } catch (SQLException e) {
-                event.getChannel().sendMessage("Could not save. SQL Error: ```" + e.getMessage() + "```").queue();
+                event.getChannel().sendMessage(
+                        MessageFormat.format(
+                                Main.localization.get("error_sql"),
+                                e.getMessage()
+                        )
+                ).queue();
                 logger.error("Could not save event.", e);
             } catch (RequiredParameterException e) {
-                event.getChannel().sendMessage("Missing parameter: you need to pass the ID.").queue();
+                event.getChannel().sendMessage(Main.localization.get("event_delete_parameters")).queue();
             }
         }
 
         if (isCommand(event, "event-reload")) {
             if (!isFromAdmin(event)) {
-                event.getChannel().sendMessage("You are not an administrator.").queue();
+                event.getChannel().sendMessage(Main.localization.get("error_not_administrator")).queue();
                 return;
             }
 
@@ -121,16 +132,21 @@ public class Events extends BaseFeature {
                 loadEventsFromDatabase();
                 updateActiveEvent(false);
 
-                event.getChannel().sendMessage("Reloaded events.").queue();
+                event.getChannel().sendMessage(Main.localization.get("event_reloaded")).queue();
             } catch (SQLException e) {
-                event.getChannel().sendMessage("Could not save. SQL Error: ```" + e.getMessage() + "```").queue();
+                event.getChannel().sendMessage(
+                        MessageFormat.format(
+                                Main.localization.get("error_sql"),
+                                e.getMessage()
+                        )
+                ).queue();
                 logger.error("Could not save event.", e);
             }
         }
 
         if (isCommand(event, "event-add")) {
             if (!isFromAdmin(event)) {
-                event.getChannel().sendMessage("You are not an administrator.").queue();
+                event.getChannel().sendMessage(Main.localization.get("error_not_administrator")).queue();
                 return;
             }
 
@@ -166,12 +182,22 @@ public class Events extends BaseFeature {
                 Dao<Event, String> eventDao = DaoManager.createDao(Main.database.connectionSource, Event.class);
                 eventDao.create(newEvent);
 
-                event.getChannel().sendMessage("Created new event #" + newEvent.getId()).queue();
+                event.getChannel().sendMessage(
+                        MessageFormat.format(
+                                Main.localization.get("event_created"),
+                                newEvent.getId()
+                        )
+                ).queue();
 
             } catch (RequiredParameterException e) {
-                event.getChannel().sendMessage("Missing parameters. Help: ```event-add [year] [month] day activityMessage announceMessage```").queue();
+                event.getChannel().sendMessage(Main.localization.get("event_create_parameters")).queue();
             } catch (SQLException e) {
-                event.getChannel().sendMessage("Could not save. SQL Error: ```" + e.getMessage() + "```").queue();
+                event.getChannel().sendMessage(
+                        MessageFormat.format(
+                                Main.localization.get("error_sql"),
+                                e.getMessage()
+                        )
+                ).queue();
                 logger.error("Could not save event.", e);
             }
         }
@@ -224,7 +250,7 @@ public class Events extends BaseFeature {
 
                         if (announce) {
                             BotEmbedBuilder embedBuilder = new BotEmbedBuilder();
-                            embedBuilder.setTitle("Today's event");
+                            embedBuilder.setTitle(Main.localization.get("event_todays_event"));
                             embedBuilder.setDescription(event.getAnnounceMessage());
 
                             Objects.requireNonNull(Main.JDA

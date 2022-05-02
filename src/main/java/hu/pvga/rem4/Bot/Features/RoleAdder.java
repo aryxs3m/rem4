@@ -33,7 +33,7 @@ public class RoleAdder extends BaseFeature {
                     UserSnowflake.fromId(event.getMember().getId()),
                     event.getGuild().getRolesByName(roleAdderConfig.getRoleName(), false).get(0)
             ).queue();
-            System.out.println("Added " + roleAdderConfig.getRoleName() + " role to " + event.getMember().getId());
+            logger.info("Added " + roleAdderConfig.getRoleName() + " role to " + event.getMember().getId());
         } catch (Exception e) {
             logger.error("Cannot add role to new member", e);
         }

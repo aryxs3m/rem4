@@ -17,6 +17,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
@@ -54,13 +55,18 @@ public class WordCounter extends BaseFeature {
 
                     wordCounts.put(wordCount.getId(), args[0]);
                 } catch (RequiredParameterException e) {
-                    event.getChannel().sendMessage("Required one parameter: word").queue();
+                    event.getChannel().sendMessage(Main.localization.get("wordcounter_add_parameters")).queue();
                 } catch (SQLException e) {
-                    event.getChannel().sendMessage("SQL exception happened.").queue();
+                    event.getChannel().sendMessage(
+                            MessageFormat.format(
+                                    Main.localization.get("error_sql"),
+                                    e.getMessage()
+                            )
+                    ).queue();
                     this.logger.error("SQL exception while WordCount create", e);
                 }
             } else {
-                event.getChannel().sendMessage("You are not an administrator.").queue();
+                event.getChannel().sendMessage(Main.localization.get("error_not_administrator")).queue();
             }
             return;
         }
@@ -76,13 +82,18 @@ public class WordCounter extends BaseFeature {
 
                     wordCounts.remove(Integer.parseInt(args[0]));
                 } catch (RequiredParameterException e) {
-                    event.getChannel().sendMessage("Required one parameter: id").queue();
+                    event.getChannel().sendMessage(Main.localization.get("wordcounter_remove_parameters")).queue();
                 } catch (SQLException e) {
-                    event.getChannel().sendMessage("SQL exception happened.").queue();
+                    event.getChannel().sendMessage(
+                            MessageFormat.format(
+                                    Main.localization.get("error_sql"),
+                                    e.getMessage()
+                            )
+                    ).queue();
                     this.logger.error("SQL exception while WordCount delete", e);
                 }
             } else {
-                event.getChannel().sendMessage("You are not an administrator.").queue();
+                event.getChannel().sendMessage(Main.localization.get("error_not_administrator")).queue();
             }
             return;
         }
@@ -103,11 +114,16 @@ public class WordCounter extends BaseFeature {
                     }
                     event.getChannel().sendMessage("```" + wcList.toString() + "```").queue();
                 } catch (SQLException e) {
-                    event.getChannel().sendMessage("SQL exception happened.").queue();
+                    event.getChannel().sendMessage(
+                            MessageFormat.format(
+                                    Main.localization.get("error_sql"),
+                                    e.getMessage()
+                            )
+                    ).queue();
                     this.logger.error("SQL exception while WordCount delete", e);
                 }
             } else {
-                event.getChannel().sendMessage("You are not an administrator.").queue();
+                event.getChannel().sendMessage(Main.localization.get("error_not_administrator")).queue();
             }
             return;
         }
@@ -171,8 +187,8 @@ public class WordCounter extends BaseFeature {
             Dao<WordCount, String> wordCountDao = DaoManager.createDao(Main.database.connectionSource, WordCount.class);
 
             BotEmbedBuilder embedBuilder = new BotEmbedBuilder();
-            embedBuilder.setTitle("Word Counter");
-            embedBuilder.setDescription("Statistics");
+            embedBuilder.setTitle(Main.localization.get("wordcounter_word_counter"));
+            embedBuilder.setDescription(Main.localization.get("wordcounter_statistics"));
 
             for (WordCount wordCount: wordCountDao.queryForAll()) {
                 embedBuilder.addField(

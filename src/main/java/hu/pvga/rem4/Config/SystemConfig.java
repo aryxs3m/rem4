@@ -18,17 +18,14 @@ public class SystemConfig extends BaseConfig {
     private String botName;
     private String botIcon;
 
+    private String language;
+    private String country;
+
     private String databaseJDBC;
 
     private List<String> enabledFeatures;
 
     private List<String> adminUsers;
-
-    private boolean apiEnabled;
-    private int apiPort;
-    private boolean apiBasicAuth;
-    private String apiUser;
-    private String apiPassword;
 
     public String getDiscordToken() {
         return discordToken;
@@ -78,43 +75,19 @@ public class SystemConfig extends BaseConfig {
         this.adminUsers = adminUsers;
     }
 
-    public boolean isApiEnabled() {
-        return apiEnabled;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setApiEnabled(boolean apiEnabled) {
-        this.apiEnabled = apiEnabled;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
-    public int getApiPort() {
-        return apiPort;
+    public String getCountry() {
+        return country;
     }
 
-    public void setApiPort(int apiPort) {
-        this.apiPort = apiPort;
-    }
-
-    public boolean isApiBasicAuth() {
-        return apiBasicAuth;
-    }
-
-    public void setApiBasicAuth(boolean apiBasicAuth) {
-        this.apiBasicAuth = apiBasicAuth;
-    }
-
-    public String getApiUser() {
-        return apiUser;
-    }
-
-    public void setApiUser(String apiUser) {
-        this.apiUser = apiUser;
-    }
-
-    public String getApiPassword() {
-        return apiPassword;
-    }
-
-    public void setApiPassword(String apiPassword) {
-        this.apiPassword = apiPassword;
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

@@ -11,12 +11,14 @@ import hu.pvga.rem4.Bot.Extends.BotEmbedBuilder;
 import hu.pvga.rem4.Config.ConfigManager;
 import hu.pvga.rem4.Config.WeatherConfig;
 import hu.pvga.rem4.FeatureSet;
+import hu.pvga.rem4.Main;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 
 /**
  * Weather Command
@@ -52,7 +54,12 @@ public class Weather extends BaseFeature {
                 JSONObject windObject = response.getJSONObject("wind");
 
                 BotEmbedBuilder embedBuilder = new BotEmbedBuilder();
-                embedBuilder.setTitle("Weather in " + response.getString("name"));
+                embedBuilder.setTitle(
+                        MessageFormat.format(
+                                Main.localization.get("weather_in"),
+                                response.getString("name")
+                        )
+                );
                 embedBuilder.setDescription(weatherObject.getString("description"));
                 embedBuilder.setAuthor(
                         "OpenWeatherMap",
@@ -61,27 +68,27 @@ public class Weather extends BaseFeature {
                 );
                 embedBuilder.setImage("http://openweathermap.org/img/wn/"+weatherObject.getString("icon")+"@2x.png");
                 embedBuilder.addField(new MessageEmbed.Field(
-                        "Temperature",
+                        Main.localization.get("weather_temp"),
                         mainObject.getDouble("temp") + " °C",
                         true
                 ));
                 embedBuilder.addField(new MessageEmbed.Field(
-                        "Feels like",
+                        Main.localization.get("weather_feels_like"),
                         mainObject.getDouble("feels_like") + " °C",
                         true
                 ));
                 embedBuilder.addField(new MessageEmbed.Field(
-                        "Humidity",
+                        Main.localization.get("weather_humidity"),
                         mainObject.getInt("humidity") + "%",
                         true
                 ));
                 embedBuilder.addField(new MessageEmbed.Field(
-                        "Visibility",
+                        Main.localization.get("weather_visibility"),
                         response.getInt("visibility") + " m",
                         true
                 ));
                 embedBuilder.addField(new MessageEmbed.Field(
-                        "Wind speed",
+                        Main.localization.get("weather_wind_speed"),
                         windObject.getDouble("speed") + " m/s",
                         true
                 ));
@@ -90,9 +97,9 @@ public class Weather extends BaseFeature {
                         embedBuilder.build()
                 ).queue();
             } catch (RequiredParameterException e) {
-                event.getChannel().sendMessage("Required parameter: city or location").queue();
+                event.getChannel().sendMessage(Main.localization.get("weather_parameters")).queue();
             } catch (IOException e) {
-                event.getChannel().sendMessage("Cannot reach OpenWeatherMap API.").queue();
+                event.getChannel().sendMessage(Main.localization.get("error_cannot_reach_api")).queue();
                 logger.error("Cannot reach OpenWeatherMap API.");
             }
         }

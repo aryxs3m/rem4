@@ -10,6 +10,7 @@ import hu.pvga.rem4.Bot.Exceptions.RequiredParameterException;
 import hu.pvga.rem4.Bot.Extends.BotEmbedBuilder;
 import hu.pvga.rem4.Config.ConfigManager;
 import hu.pvga.rem4.Config.CurrencyConfig;
+import hu.pvga.rem4.Main;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
@@ -53,13 +54,13 @@ public class Currency extends BaseFeature {
                 response = getExchangeRate(argBaseCurrency, argCurrency);
 
                 if (response.code() == 429) {
-                    event.getChannel().sendMessage("CurrencyAPI rate limit exceeded.").queue();
+                    event.getChannel().sendMessage(Main.localization.get("error_api_rate_limit_exceeded")).queue();
                     logger.warn("CurrencyAPI rate limit exceeded.");
                     return;
                 }
 
                 if (response.code() != 200) {
-                    event.getChannel().sendMessage("CurrencyAPI responded with " + response.code()).queue();
+                    event.getChannel().sendMessage(Main.localization.get("error_api_responded_with") + " " + response.code()).queue();
                     logger.warn("CurrencyAPI responded with " + response.code());
                     return;
                 }
@@ -84,10 +85,10 @@ public class Currency extends BaseFeature {
                         embedBuilder.build()
                 ).queue();
             } catch (IOException e) {
-                event.getChannel().sendMessage("Cannot reach CurrencyAPI.").queue();
+                event.getChannel().sendMessage(Main.localization.get("error_cannot_reach_api")).queue();
                 logger.error("Cannot reach CurrencyAPI", e);
             } catch (RequiredParameterException e) {
-                event.getChannel().sendMessage("Missing parameters. Examples: `1 EUR` or `1 EUR in USD`.").queue();
+                event.getChannel().sendMessage(Main.localization.get("currency_parameters")).queue();
             }
         }
     }

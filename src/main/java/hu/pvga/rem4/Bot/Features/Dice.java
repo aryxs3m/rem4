@@ -7,10 +7,12 @@
 package hu.pvga.rem4.Bot.Features;
 
 import hu.pvga.rem4.Bot.Extends.BotEmbedBuilder;
+import hu.pvga.rem4.Main;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
 
+import java.text.MessageFormat;
 import java.util.Random;
 
 /**
@@ -28,8 +30,12 @@ public class Dice extends BaseFeature {
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         if (isCommand(event, "dice")) {
             BotEmbedBuilder embedBuilder = new BotEmbedBuilder();
-            embedBuilder.setTitle("Dice");
-            embedBuilder.setDescription("Got " + ((new Random()).nextInt(5) + 1));
+            embedBuilder.setTitle(Main.localization.get("dice_dice"));
+            embedBuilder.setDescription(
+                    MessageFormat.format(
+                            Main.localization.get("dice_reply"),
+                            ((new Random()).nextInt(5) + 1))
+            );
 
             event.getChannel().sendMessageEmbeds(
                     embedBuilder.build()

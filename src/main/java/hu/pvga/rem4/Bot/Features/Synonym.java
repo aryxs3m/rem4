@@ -11,6 +11,7 @@ import hu.pvga.rem4.Bot.Extends.BotEmbedBuilder;
 import hu.pvga.rem4.Config.ConfigManager;
 import hu.pvga.rem4.Config.SynonymConfig;
 import hu.pvga.rem4.FeatureSet;
+import hu.pvga.rem4.Main;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
@@ -28,6 +29,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.StringReader;
 import java.net.URLEncoder;
+import java.text.MessageFormat;
 
 /**
  * Synonym Feature
@@ -74,7 +76,11 @@ public class Synonym extends BaseFeature {
                 NodeList name = element.getElementsByTagName("szinonima");
 
                 BotEmbedBuilder embedBuilder = new BotEmbedBuilder();
-                embedBuilder.setTitle("Synonyms for " + params[0]);
+                embedBuilder.setTitle(
+                        MessageFormat.format(
+                                Main.localization.get("synonyms_for"),
+                                params[0]
+                        ));
                 embedBuilder.setAuthor(
                         "Poet.hu",
                         "https://poet.hu/",
@@ -86,7 +92,10 @@ public class Synonym extends BaseFeature {
                         Element line = (Element) name.item(i);
 
                         embedBuilder.addField(new MessageEmbed.Field(
-                                "Synonym " + curn,
+                                MessageFormat.format(
+                                        Main.localization.get("synonym_synonym"),
+                                        curn + 1
+                                ),
                                 getCharacterDataFromElement(line),
                                 true
                         ));
@@ -101,12 +110,12 @@ public class Synonym extends BaseFeature {
                         embedBuilder.build()
                 ).queue();
             } catch (RequiredParameterException e) {
-                event.getChannel().sendMessage("Required parameter: word").queue();
+                event.getChannel().sendMessage(Main.localization.get("synonym_parameters")).queue();
             } catch (IOException e) {
-                event.getChannel().sendMessage("Cannot reach poet.hu API.").queue();
+                event.getChannel().sendMessage(Main.localization.get("error_cannot_reach_api")).queue();
                 logger.error("Cannot reach poet.hu API");
             } catch (ParserConfigurationException | SAXException e) {
-                event.getChannel().sendMessage("Failed to parse poet.hu API response.").queue();
+                event.getChannel().sendMessage(Main.localization.get("error_cannot_parse_api_response")).queue();
                 logger.error("Cannot parse poet.hu API response");
             }
         }

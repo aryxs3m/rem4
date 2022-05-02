@@ -8,6 +8,11 @@ discordToken: 'discord-bot-token'
 botName: 'Rem'
 botIcon: 'https://static.wikia.nocookie.net/rezero/images/0/02/Rem_Anime.png/revision/latest?cb=20210916151323'
 
+# Localization Settings
+# Supported: en-US, hu-HU
+language: 'en'
+country: 'US'
+
 # Database JDBC URL
 # Leave it as is for the integrated H2 database
 databaseJDBC: 'jdbc:h2:file:./h2'

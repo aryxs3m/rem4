@@ -10,6 +10,7 @@ import hu.pvga.rem4.Bot.Extends.BotEmbedBuilder;
 import hu.pvga.rem4.Config.CitatumConfig;
 import hu.pvga.rem4.Config.ConfigManager;
 import hu.pvga.rem4.FeatureSet;
+import hu.pvga.rem4.Main;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
@@ -77,7 +78,7 @@ public class Citatum extends BaseFeature {
                 String url = getCharacterDataFromElement((Element) urlNode.item(0));
 
                 BotEmbedBuilder embedBuilder = new BotEmbedBuilder();
-                embedBuilder.setTitle("Random quote");
+                embedBuilder.setTitle(Main.localization.get("citatum_random_quote"));
                 embedBuilder.setDescription(quoteText);
                 embedBuilder.setAuthor(
                         "Citatum",
@@ -85,7 +86,7 @@ public class Citatum extends BaseFeature {
                         "https://www.citatum.hu/favicon.png"
                 );
                 embedBuilder.addField(new MessageEmbed.Field(
-                        "Author",
+                        Main.localization.get("citatum_author"),
                         quoteAuthor,
                         true
                 ));
@@ -94,10 +95,10 @@ public class Citatum extends BaseFeature {
                         embedBuilder.build()
                 ).queue();
             } catch (IOException | ParserConfigurationException e) {
-                event.getChannel().sendMessage("Cannot reach citatum.hu API.").queue();
+                event.getChannel().sendMessage(Main.localization.get("error_cannot_reach_api")).queue();
                 logger.error("Cannot reach citatum.hu API", e);
             } catch (SAXException e) {
-                event.getChannel().sendMessage("Error while parsing citatum.hu API response.").queue();
+                event.getChannel().sendMessage(Main.localization.get("error_cannot_parse_api_response")).queue();
                 logger.error("Error while parsing citatum.hu API response", e);
             }
         }

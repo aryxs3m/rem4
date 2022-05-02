@@ -7,6 +7,7 @@
 package hu.pvga.rem4.Bot.Features;
 
 import hu.pvga.rem4.Bot.Extends.BotEmbedBuilder;
+import hu.pvga.rem4.Main;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
@@ -31,8 +32,8 @@ public class Stopwatch extends BaseFeature {
                 startedBy = event.getAuthor();
 
                 BotEmbedBuilder embedBuilder = new BotEmbedBuilder();
-                embedBuilder.setTitle("Stopwatch");
-                embedBuilder.setDescription("Stopwatch started. Call again to stop.");
+                embedBuilder.setTitle(Main.localization.get("stopwatch_stopwatch"));
+                embedBuilder.setDescription(Main.localization.get("stopwatch_started"));
 
                 event.getChannel().sendMessageEmbeds(
                         embedBuilder.build()
@@ -43,15 +44,15 @@ public class Stopwatch extends BaseFeature {
                 long diff = (System.nanoTime() - startedAt) / 1000000000;
 
                 BotEmbedBuilder embedBuilder = new BotEmbedBuilder();
-                embedBuilder.setTitle("Stopwatch");
-                embedBuilder.setDescription("Stopwatch stopped.");
+                embedBuilder.setTitle(Main.localization.get("stopwatch_stopwatch"));
+                embedBuilder.setDescription(Main.localization.get("stopwatch_stopped"));
                 embedBuilder.addField(
-                        "Elapsed time",
+                        Main.localization.get("stopwatch_elapsed"),
                          diff/60 + "m " + diff%60 + "s",
                         true
                 );
                 embedBuilder.addField(
-                        "Started by",
+                        Main.localization.get("stopwatch_started_by"),
                         startedBy.getName(),
                         true
                 );

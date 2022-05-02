@@ -8,6 +8,7 @@ package hu.pvga.rem4.Bot.Features;
 
 import hu.pvga.rem4.Bot.Extends.BotEmbedBuilder;
 import hu.pvga.rem4.FeatureSet;
+import hu.pvga.rem4.Main;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
@@ -30,14 +31,14 @@ public class Uptime extends BaseFeature {
         if (isCommand(event, "uptime")) {
             try {
                 BotEmbedBuilder embedBuilder = new BotEmbedBuilder();
-                embedBuilder.setTitle("Server uptime");
+                embedBuilder.setTitle(Main.localization.get("uptime_server_uptime"));
                 embedBuilder.setDescription(FeatureSet.getCLI("uptime"));
 
                 event.getChannel().sendMessageEmbeds(
                         embedBuilder.build()
                 ).queue();
             } catch (Exception e) {
-                event.getChannel().sendMessage("Cannot check uptime right now.").queue();
+                event.getChannel().sendMessage(Main.localization.get("error_unknown")).queue();
                 logger.error("Uptime check error.", e);
             }
         }

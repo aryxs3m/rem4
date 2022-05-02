@@ -99,15 +99,15 @@ public class Gold extends BaseFeature {
             hu.pvga.rem4.Models.Gold gold = golds.get(randomGoldIndex);
 
             BotEmbedBuilder embedBuilder = new BotEmbedBuilder();
-            embedBuilder.setTitle("Random Gold");
+            embedBuilder.setTitle(Main.localization.get("gold_random_gold"));
             embedBuilder.setDescription(gold.getMessage());
             embedBuilder.addField(
-                    "Author",
+                    Main.localization.get("gold_author"),
                     gold.getUserName(),
                     true
             );
             embedBuilder.addField(
-                    "Created At",
+                    Main.localization.get("gold_created_at"),
                     gold.getSentAt()
                             .toInstant()
                             .atZone(ZoneId.systemDefault())
@@ -115,7 +115,7 @@ public class Gold extends BaseFeature {
                     true
             );
             embedBuilder.addField(
-                    "Saved By",
+                    Main.localization.get("gold_saved_by"),
                     gold.getGoldByUserName(),
                     true
             );
@@ -156,7 +156,7 @@ public class Gold extends BaseFeature {
 
             goldDao.create(gold);
 
-            event.getChannel().sendMessage("Message saved.").queue();
+            event.getChannel().sendMessage(Main.localization.get("gold_message_saved")).queue();
         } catch (SQLException e) {
             logger.error("Could not save gold.", e);
         }
@@ -181,7 +181,7 @@ public class Gold extends BaseFeature {
                 goldDao.delete(goldElement.get());
             }
 
-            event.getChannel().sendMessage("Message removed.").queue();
+            event.getChannel().sendMessage(Main.localization.get("gold_message_removed")).queue();
         } catch (SQLException e) {
             logger.error("Could not remove gold.", e);
         }

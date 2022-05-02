@@ -9,6 +9,7 @@ package hu.pvga.rem4.Bot.Features;
 import hu.pvga.rem4.Bot.Extends.BotEmbedBuilder;
 import hu.pvga.rem4.Config.ConfigManager;
 import hu.pvga.rem4.Config.UptimeRobotConfig;
+import hu.pvga.rem4.Main;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import okhttp3.*;
@@ -52,13 +53,13 @@ public class UptimeRobot extends BaseFeature {
                 Response response = call.execute();
 
                 if (response.code() == 429) {
-                    event.getChannel().sendMessage("UptimeRobot API rate limit exceeded.").queue();
+                    event.getChannel().sendMessage(Main.localization.get("error_api_rate_limit_exceeded")).queue();
                     logger.warn("UptimeRobot API rate limit exceeded.");
                     return;
                 }
 
                 if (response.code() != 200) {
-                    event.getChannel().sendMessage("UptimeRobot API responded with " + response.code()).queue();
+                    event.getChannel().sendMessage(Main.localization.get("error_api_responded_with") + " " + response.code()).queue();
                     logger.warn("UptimeRobot API responded with " + response.code());
                     return;
                 }
@@ -66,8 +67,8 @@ public class UptimeRobot extends BaseFeature {
                 JSONObject responseJSON = new JSONObject(response.body().string());
 
                 BotEmbedBuilder embedBuilder = new BotEmbedBuilder();
-                embedBuilder.setTitle("Monitor uptime");
-                embedBuilder.setDescription("All time uptime %");
+                embedBuilder.setTitle(Main.localization.get("monitor_monitor_uptime"));
+                embedBuilder.setDescription(Main.localization.get("monitor_all_time"));
                 embedBuilder.setAuthor(
                         "UptimeRobot",
                         "https://uptimerobot.com/",
@@ -94,7 +95,7 @@ public class UptimeRobot extends BaseFeature {
                         embedBuilder.build()
                 ).queue();
             } catch (IOException e) {
-                event.getChannel().sendMessage("Cannot reach UptimeRobot API.").queue();
+                event.getChannel().sendMessage(Main.localization.get("error_cannot_reach_api")).queue();
                 logger.error("Cannot reach UptimeRobot API.", e);
             }
         }

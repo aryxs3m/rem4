@@ -15,9 +15,11 @@ public class Main {
     public static SystemConfig systemConfig;
     public static net.dv8tion.jda.api.JDA JDA;
     public static Database database;
+    public static Localization localization;
 
     public static void main(String[] args) throws Exception {
         Main.systemConfig = ConfigManager.load(SystemConfig.class);
+        localization = new Localization(systemConfig.getLanguage(), systemConfig.getCountry());
 
         database = new Database(Main.systemConfig.getDatabaseJDBC());
 

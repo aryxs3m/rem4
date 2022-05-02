@@ -8,11 +8,13 @@ package hu.pvga.rem4.Bot.Features;
 
 import hu.pvga.rem4.Bot.Exceptions.RequiredParameterException;
 import hu.pvga.rem4.Bot.Extends.BotEmbedBuilder;
+import hu.pvga.rem4.Main;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 
 /**
@@ -27,14 +29,14 @@ public class Nmap extends BaseFeature {
             try {
                 String args[] = getCommandParameters(event, 1);
                 if (!args[0].matches("[a-zA-Z0-9.\\-]*")) {
-                    event.getChannel().sendMessage("Invalid IP address or hostname provided!").queue();
+                    event.getChannel().sendMessage(Main.localization.get("nmap_invalid_address")).queue();
                     return;
                 }
 
                 NmapThread nmapThread = new NmapThread(args[0], event);
                 nmapThread.start();
             } catch (RequiredParameterException e) {
-                event.getChannel().sendMessage("Required parameter missing: IP or hostname").queue();
+                event.getChannel().sendMessage(Main.localization.get("nmap_parameters")).queue();
             }
         }
     }
@@ -70,7 +72,7 @@ public class Nmap extends BaseFeature {
                 while ((line = stdError.readLine()) != null) {
                     if (line.contains("Failed to resolve")) {
                         event.getChannel()
-                            .sendMessage("Unknown domain or the domain does not have a valid A record.")
+                            .sendMessage(Main.localization.get("nmap_failed_resolve"))
                             .queue();
                         error = true;
                         break;
@@ -80,7 +82,7 @@ public class Nmap extends BaseFeature {
                 while ((line = stdInput.readLine()) != null) {
                     if (line.contains("Host seems down.")) {
                         event.getChannel()
-                                .sendMessage("Host seems down.")
+                                .sendMessage(Main.localization.get("nmap_host_down"))
                                 .queue();
                         error = true;
                         break;
@@ -96,8 +98,13 @@ public class Nmap extends BaseFeature {
 
                 if (!error) {
                     BotEmbedBuilder embedBuilder = new BotEmbedBuilder();
-                    embedBuilder.setTitle("Nmap TCP portscan");
-                    embedBuilder.setDescription("Target: " + address);
+                    embedBuilder.setTitle(Main.localization.get("nmap_tcp_portscan"));
+                    embedBuilder.setDescription(
+                            MessageFormat.format(
+                                    Main.localization.get("nmap_target"),
+                                    address
+                            )
+                    );
                     embedBuilder.setAuthor(
                             "Nmap",
                             "https://nmap.org/",
@@ -106,7 +113,7 @@ public class Nmap extends BaseFeature {
 
                     for (String port: openTcpPorts) {
                         embedBuilder.addField(
-                                "TCP",
+                                Main.localization.get("nmap_tcp"),
                                 port,
                                 true
                         );
@@ -116,7 +123,7 @@ public class Nmap extends BaseFeature {
                 }
 
             } catch (Exception ex) {
-                event.getChannel().sendMessage("Unknown error.").queue();
+                event.getChannel().sendMessage(Main.localization.get("error_unknown")).queue();
             }
         }
 
