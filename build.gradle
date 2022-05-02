@@ -1,23 +1,19 @@
 plugins {
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
     id 'java'
 }
 
 group 'hu.pvga.rem4'
 version '4.0-SNAPSHOT'
 
-task customFatJar(type: Jar) {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    manifest {
-        attributes 'Main-Class': 'Main-Class": "hu.pvga.rem4.Main'
-    }
-    baseName = 'fatjar'
-    from { configurations.compileClasspath.filter{ it.exists() }.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
-}
-
 repositories {
     mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'hu.pvga.rem4.Main'
+    }
 }
 
 task createProperties(dependsOn: processResources) {

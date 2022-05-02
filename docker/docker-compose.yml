@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  rem:
+    build: rem4
+    ports:
+      - "45600:8080"
+    volumes:
+      - ./app:/opt/rem
