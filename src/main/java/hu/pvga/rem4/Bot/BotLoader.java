@@ -11,6 +11,7 @@ import hu.pvga.rem4.Main;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,19 +30,22 @@ public class BotLoader {
     private final List<FeatureInterface> features = new ArrayList<>();
 
     public JDA boot() throws LoginException {
-        /*List<GatewayIntent> gatewayIntentList = new ArrayList<>();
-        gatewayIntentList.add(GatewayIntent.GUILD_MEMBERS);
-        gatewayIntentList.add(GatewayIntent.GUILD_MESSAGES);
-        gatewayIntentList.add(GatewayIntent.DIRECT_MESSAGES);
-        gatewayIntentList.add(GatewayIntent.GUILD_MESSAGE_REACTIONS);*/
+
+
+        List<GatewayIntent> gatewayIntentList = new ArrayList<>();
+        for (String intentValue: Main.systemConfig.getIntents()) {
+            gatewayIntentList.add(GatewayIntent.valueOf(intentValue));
+            logger.info("Enabling " + intentValue + " intent.");
+        }
 
         JDABuilder builder = JDABuilder
                 .createDefault(Main.systemConfig.getDiscordToken())
-                /*.enableIntents(gatewayIntentList)*/;
+                .enableIntents(gatewayIntentList);
         builder.setActivity(
                 Activity.playing("Rem v4")
         );
 
+        builder.addEventListeners(new BotSystemHandler());
         loadFeatures(builder);
 
         BotLoader.JDA = builder.build();

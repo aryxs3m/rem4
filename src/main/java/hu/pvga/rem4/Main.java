@@ -25,6 +25,9 @@ public class Main {
 
         BotLoader botLoader = new BotLoader();
         Main.JDA = botLoader.boot();
+
+        System.out.println("Status: " + Main.JDA.getStatus());
+
         botLoader.initFeatures();
 
         WebApiLoader webApiLoader = new WebApiLoader();

@@ -18,6 +18,8 @@ public class SystemConfig extends BaseConfig {
     private String botName;
     private String botIcon;
 
+    private List<String> intents;
+
     private String language;
     private String country;
 
@@ -89,5 +91,13 @@ public class SystemConfig extends BaseConfig {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public List<String> getIntents() {
+        return intents;
+    }
+
+    public void setIntents(List<String> intents) {
+        this.intents = intents;
     }
 }
