@@ -4,6 +4,9 @@
 
 discordToken: 'discord-bot-token'
 
+# Command Prefix
+botPrefix: '?'
+
 # Name and Icon will show up in message embed footer
 botName: 'Rem'
 botIcon: 'https://static.wikia.nocookie.net/rezero/images/0/02/Rem_Anime.png/revision/latest?cb=20210916151323'

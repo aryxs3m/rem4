@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class SystemConfig extends BaseConfig {
     private String discordToken;
+    private String botPrefix;
     private String botName;
     private String botIcon;
 
@@ -99,5 +100,13 @@ public class SystemConfig extends BaseConfig {
 
     public void setIntents(List<String> intents) {
         this.intents = intents;
+    }
+
+    public String getBotPrefix() {
+        return botPrefix;
+    }
+
+    public void setBotPrefix(String botPrefix) {
+        this.botPrefix = botPrefix;
     }
 }

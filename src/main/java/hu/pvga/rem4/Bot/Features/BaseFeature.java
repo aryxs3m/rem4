@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
  * Every Feature should extend this class.
  */
 public class BaseFeature extends ListenerAdapter implements FeatureInterface {
-    private final String commandPrefix = "?";
+    private final String commandPrefix = Main.systemConfig.getBotPrefix();
     private final HashMap<String, String> slashCommands = new HashMap<>();
     protected Logger logger =  LoggerFactory.getLogger(this.getClass());
 
