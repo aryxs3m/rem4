@@ -286,6 +286,11 @@ public class FoxpostTracker extends BaseFeature {
                         foxpostDao.update(foxpost);
                         notifyChangedStatus(foxpost);
                     }
+
+                    // If the item was picked up, we no longer need to track it
+                    if (foxpost.getStatus().equals("Átvéve")) {
+                        foxpostDao.delete(foxpost);
+                    }
                 }
 
                 logger.debug("Foxpost updated.");
